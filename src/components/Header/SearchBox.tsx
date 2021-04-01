@@ -1,10 +1,9 @@
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { Flex, Icon, Input } from "@chakra-ui/react";
 import { RiSearchLine } from "react-icons/ri";
 
 export function SearchBox() {
 	const [searchText, setSearchText] = useState('')
-	const searchInputRef = useRef<HTMLInputElement>(null)
 
 	return (
 		<Flex
@@ -21,7 +20,6 @@ export function SearchBox() {
 			borderRadius="full"
 		>
 			<Input
-				ref={searchInputRef}
 				color="gray.50"
 				variant="unstyled"
 				px="4"
