@@ -25,9 +25,10 @@ const createUserFormSchema = Yup.object().shape({
 })
 
 export default function CreateUser() {
-	const { register, handleSubmit, formState, errors } = useForm({
+	const { register, handleSubmit, formState } = useForm({
 		resolver: yupResolver(createUserFormSchema)
 	})
+	const { errors } = formState
 
 	const handleCreateUser: SubmitHandler<CreateUserFormData> = async (data) => {
 		await new Promise(resolve => setTimeout(resolve, 2000))
@@ -56,13 +57,13 @@ export default function CreateUser() {
 					<VStack spacing="8">
 						<SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%">
 							<Input
-								ref={register}
+								{...register('name')}
 								name="name"
 								label="Nome completo"
 								error={errors.name}
 							/>
 							<Input
-								ref={register}
+								{...register('email')}
 								name="email"
 								label="E-mail"
 								error={errors.email}
@@ -70,14 +71,14 @@ export default function CreateUser() {
 						</SimpleGrid>
 						<SimpleGrid minChildWidth="240px" spacing={["6", "8"]} w="100%">
 							<Input
-								ref={register}
+								{...register('password')}
 								name="password"
 								type="password"
 								label="Senha"
 								error={errors.password}
 							/>
 							<Input
-								ref={register}
+								{...register('password_confirmation')}
 								name="password_confirmation"
 								type="password"
 								label="Confirmação da senha"
